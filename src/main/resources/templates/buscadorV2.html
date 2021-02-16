@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<header th:insert="~{fragments/changelang.html :: header}">
+</header>
+<body>
+
+ <div th:replace="~{fragments/changelang.html :: body}"></div>
+ 
+<div id="buscador">
+    <div id="buscador2" >
+        <label th:text="#{titulo}"></label>
+        <input type="text" id="title" placeholder="Joker">
+       
+        <label th:text="#{ano}">:</label>
+        <input type="number" min="0" max="9999" id="year" placeholder="2019">
+        
+
+        <button onclick="enviar()" type="button" id="enviar" th:text="#{buscar}" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+          </button>  
+    </div>
+    <div>
+        <h1 id="peliculas-h1" th:text="#{peliculas}"></h1>
+    </div>
+    
+   
+</div>
+<div id="resultado2">
+        <li th:each="buscadorV2 : ${buscadorV2}" th:object="${buscadorV2}">
+       <div> 
+        <h1 th:text="*{title}"></h1>
+    </div>  
+        <div id="novedad">
+                <span th:text="#{nuevo}" th:if="*{year=='2020'}"></span> </div>
+        <img th:src="@{*{poster}}">
+        <div>
+        <a th:href="@{/movies/Buscador/detail(id=*{id})}"><button th:text="#{mas}"type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+           </button></a>
+        </div>
+    </li>
+    
+     </div>
+</div>
+</body>
+
+<script>
+   function enviar(){
+    let title = document.getElementById('title').value;
+       let year = document.getElementById('year').value;
+       let dire = "http://localhost:6969/movies/Buscador";
+       let direYear = "http://localhost:6969/movies/Buscador?year=";
+       let direTitle = "http://localhost:6969/movies/Buscador?title=";
+      
+     window.location.href= "http://localhost:6969/movies/Buscador?title=" + title + "&year=" + year;
+       
+
+       }
+</script>
+
+</html>
