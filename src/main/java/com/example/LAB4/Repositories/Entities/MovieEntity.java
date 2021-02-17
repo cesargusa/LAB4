@@ -26,7 +26,7 @@ public class MovieEntity {
     public MovieEntity() {
     }
 
-    public MovieEntity( Long id,String title, String year, String poster, String description) {
+    public MovieEntity(String title, String year, String poster, String description) {
         this.id = id;
         this.title=title;
         this.year=year;
