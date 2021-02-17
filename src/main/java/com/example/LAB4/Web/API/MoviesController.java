@@ -23,9 +23,26 @@ public class MoviesController {
     }
 
     @GetMapping()
-    public List<MovieDTO> GetPosts() {
-      
-            return moviesServices.GetAll();
+    public List<MovieDTO> GetMovies(@RequestParam(name = "title",required = false, defaultValue = "") String title,
+    @RequestParam(name = "year", required = false, defaultValue = "") String year) {
+            if (!title.equals("") && year.equals("")){
+                return moviesServices.findByTitle(title);
+            }
+            if(!year.equals("") && title.equals("")){
+                return moviesServices.findByYear(year);
+            }
+            
+             if(!title.equals("") && !year.equals("")){
+                    return moviesServices.findByTitleAndYear(title, year);
+            } 
+            if(title.equals("") && year.equals("")){
+                 return moviesServices.GetAll();
+            }
+            return null;
+            
+               
+
+            
         }
 
     }
