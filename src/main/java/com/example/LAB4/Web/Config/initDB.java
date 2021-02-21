@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class initDB {
-    @Bean
+   /*  @Bean
     CommandLineRunner initDatabase(MoviesRepository repository){
         return args ->{
 
@@ -38,6 +38,6 @@ public class initDB {
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text "));
            
         
-    };
-    }
+    }; */
+    
 }
