@@ -8,7 +8,12 @@ import com.example.LAB4.Repositories.Entities.MovieEntity;
 import com.example.LAB4.Services.MoviesServices;
 import com.example.LAB4.Services.Models.MovieDTO;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,53 +50,22 @@ public class MoviesController {
             
         }
 
+        @PostMapping
+    public MovieDTO AddMovie(@RequestBody MovieDTO movie){
+        return moviesServices.add(movie);
     }
-
-    // GET METHOD
-    /* @GetMapping("/V2/movies")
-    public static ArrayList<MovieEntity> GetAllMovies(
-            @RequestParam(name = "title", defaultValue = "", required = false) String title,
-            @RequestParam(name = "year", defaultValue = "", required = false) String year,
-            @RequestParam(name = "id", defaultValue = "0", required = false) Long id) {
-        ArrayList<MovieEntity> AllMovies = new ArrayList<MovieEntity>();
-        if (id!=0) {
-            for (MovieEntity elem : moviesV2) {
-                if (elem.getId().equals(id)) {
-                    AllMovies.add(elem);
-                }
-            }
-            return AllMovies;
-        }
-        if (title.equals("") && year.equals(""))
-            return moviesV2;
-        if (!title.equals("") && year.equals("")) {
-            for (MovieEntity element : moviesV2) {
-                if (element.getTitle().contains(title)) {
-                    AllMovies.add(element);
-                }
-            }
-            return AllMovies;
-        }
-        if (title.equals("") && !year.equals("")) {
-            for (MovieEntity element : moviesV2) {
-                if (element.getYear().contains(year)) {
-                    AllMovies.add(element);
-                }
-            }
-            return AllMovies;
-        }
-        if (!title.equals("") && !year.equals("")) {
-            for (MovieEntity element : moviesV2) {
-                if (element.getTitle().contains(title) && element.getYear().contains(year)) {
-                    AllMovies.add(element);
-                }
-            }
-            return AllMovies;
-        }
-
-        return null;
+    
+    @PutMapping("/{id}")
+    public MovieDTO UpdateMovie(@RequestBody MovieDTO movie, @PathVariable("id") Long id){
+        return moviesServices.update(id,movie);
+    }
+    
+    @DeleteMapping("/{id}")
+    public void DeleteMovie(@PathVariable("id") Long id){
+        moviesServices.delete(id);
 
     }
- */
+    }
 
+  
 
