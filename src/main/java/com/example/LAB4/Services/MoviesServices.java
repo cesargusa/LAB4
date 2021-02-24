@@ -2,7 +2,6 @@ package com.example.LAB4.Services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.example.LAB4.Repositories.Entities.MovieEntity;
@@ -24,6 +23,11 @@ public class MoviesServices {
         .map(x -> modelMapper.map(x, MovieDTO.class))
         .collect(Collectors.toList());
     }
+    public List<MovieDTO> GetId(Long id){
+        return moviesRepository.findById(id).stream()
+        .map(x -> modelMapper.map(x, MovieDTO.class))
+        .collect(Collectors.toList());  
+      }
         
     public MovieDTO add(MovieDTO movie){
         MovieEntity entityToInsert = modelMapper.map(movie, MovieEntity.class);
@@ -44,13 +48,15 @@ public class MoviesServices {
         }
     }
 
-    public Optional<MovieDTO> findById(Long id){
+     public Optional<MovieDTO> findById(Long id){
         Optional<MovieEntity> entity = moviesRepository.findById(id);
         if(entity.isPresent())
             return Optional.of(modelMapper.map(entity.get(),MovieDTO.class));
             else
                 return Optional.empty();
-    }
+    } 
+
+
 
     public List<MovieDTO> findByTitle(String title){
         return moviesRepository.findByTitle(title).stream()

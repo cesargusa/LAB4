@@ -11,8 +11,8 @@
     </a>
     </div>
     <div style="margin-left: 12%;margin-top: 6%;">
-    <li th:each="detail : ${movieDetail}"
-        th:object="${detail}" style="list-style: none;">
+    <li th:each="movieDetailId : ${movieDetailId}"
+        th:object="${movieDetailId}" style="list-style: none;">
        
         <div><span style="color:black;font-weight: bolder;font-size: 30px; font-family: 'Montserrat', sans-serif;"
         th:text="*{title}"></span>

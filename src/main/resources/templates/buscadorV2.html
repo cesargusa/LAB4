@@ -31,20 +31,25 @@
    
 </div>
 <div id="resultado2">
+
+
+   
         <li th:each="buscadorV2 : ${buscadorV2}" th:object="${buscadorV2}">
        <div> 
         <h1 th:text="*{title}"></h1>
-    </div>  
+        </div>  
         <div id="novedad">
-                <span th:text="#{nuevo}" th:if="*{year=='2020'}"></span> </div>
+                <span th:text="#{nuevo}" th:if="*{year=='2020'}"></span>
+        </div>
         <img th:src="@{*{poster}}">
         <div>
-        <a th:href="@{/movies/Buscador/detail(id=*{id})}"><button th:text="#{mas}"type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+
+       <a th:href="@{'/movies/Buscador/detail/'+ *{id}}"><button th:text="#{mas}"type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
            </button></a>
         </div>
     </li>
-    
-     </div>
+        </div>
+  
 </div>
 </body>
 

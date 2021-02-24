@@ -1,12 +1,11 @@
 package com.example.LAB4.Web.API;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
-import com.example.LAB4.Repositories.Entities.MovieEntity;
 import com.example.LAB4.Services.MoviesServices;
 import com.example.LAB4.Services.Models.MovieDTO;
+
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +29,9 @@ public class MoviesController {
     @GetMapping()
     public List<MovieDTO> GetMovies(@RequestParam(name = "title",required = false, defaultValue = "") String title,
     @RequestParam(name = "year", required = false, defaultValue = "") String year) {
-            if (!title.equals("") && year.equals("")){
+         
+        
+        if (!title.equals("") && year.equals("")){
                 return moviesServices.findByTitle(title);
             }
             if(!year.equals("") && title.equals("")){
@@ -48,6 +49,11 @@ public class MoviesController {
                
 
             
+        }
+  
+        @GetMapping("/{id}")
+        public List<MovieDTO> GetId(@PathVariable("id") Long id){
+            return moviesServices.GetId(id);
         }
 
         @PostMapping
