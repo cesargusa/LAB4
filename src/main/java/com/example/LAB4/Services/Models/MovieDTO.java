@@ -4,9 +4,7 @@ public class MovieDTO {
     private Long id;
     private String title;
     private String year;
-
     private String poster;
-    private String urlId;
     private String description;
 
     public MovieDTO() {
@@ -16,10 +14,9 @@ public class MovieDTO {
         this.id = id;
         this.title=title;
         this.year=year;
-       
         this.poster = poster;
         this.description = description;
-        urlId();
+
     }
 
     public String getPoster() {
@@ -28,18 +25,6 @@ public class MovieDTO {
 
     public void setPoster(String poster) {
         this.poster = poster;
-    }
-
-    public String getUrlId() {
-        return urlId;
-    }
-
-    public void setUrlId(String urlId) {
-        this.urlId = urlId;
-    }
-
-    public void urlId() {
-        this.urlId = "http://localhost:9092/V2/movies/Buscador/detail?id=" + getId();
     }
 
     public String getDescription() {
